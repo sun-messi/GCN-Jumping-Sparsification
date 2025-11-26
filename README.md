@@ -99,11 +99,11 @@ We analyze whether large-weight edges or small-weight edges contribute more to g
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="figure/3D_Heatmap_of_Test_Error_Rate2.png" alt="3D Edge Weight Analysis">
+      <img src="figure/3D_Heatmap_of_Test_Error_Rate2.pdf" alt="3D Edge Weight Analysis">
       <br><strong>(a) Error vs Edge Weight Range</strong>
     </td>
     <td align="center" width="50%">
-      <img src="figure/2D_Heatmap_of_Test_Error_Rate.png" alt="2D Edge Weight Analysis">
+      <img src="figure/2D_Heatmap_of_Test_Error_Rate.pdf" alt="2D Edge Weight Analysis">
       <br><strong>(b) 2D Heatmap</strong>
     </td>
   </tr>
