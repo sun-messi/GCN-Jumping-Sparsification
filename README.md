@@ -62,52 +62,6 @@ gcn-sparsification/
 └── README.md
 ```
 
-## Experiments
-
-### 4.3 Large-scale Real Dataset Experiments
-
-Experiments on Open Graph Benchmark (OGB) datasets, specifically **Ogbn-Arxiv**, using an 8-layer Jumping Knowledge Network.
-
-#### 1. Layer-wise Pruning Sensitivity
-
-<p align="center">
-<table>
-  <tr>
-    <td align="center" width="50%">
-      <img src="figure/3D_GCN_res.png" alt="3D GCN Results">
-      <br><strong>(a) Deeper layers tolerate higher sampling rates</strong>
-    </td>
-    <td align="center" width="50%">
-      <img src="figure/2D_GCN_res.png" alt="2D GCN Results">
-      <br><strong>(b) 2D Heatmap of Test Error</strong>
-    </td>
-  </tr>
-</table>
-</p>
-
-> **Figure Analysis**: Learning deep GCNs on Ogbn-Arxiv. Deeper layers tolerate higher sampling rates than shallow layers while maintaining accuracy. The test error decreases more drastically when increasing retention in shallow layers ($q_1$) compared to deep layers ($q_2$).
-
----
-
-#### Edge Weight Influence Analysis
-
-<p align="center">
-<table>
-  <tr>
-    <td align="center" width="50%">
-      <img src="figure/3D_Heatmap_of_Test_Error_Rate2.png" alt="3D Heatmap Edge Weight">
-      <br><strong>(a) Retaining large-weight edges</strong>
-    </td>
-    <td align="center" width="50%">
-      <img src="figure/2D_Heatmap_of_Test_Error_Rate.png" alt="2D Heatmap Edge Weight">
-      <br><strong>(b) 2D Heatmap of Test Error</strong>
-    </td>
-  </tr>
-</table>
-</p>
-
-> **Figure Analysis**: Learning deep GCNs on Ogbn-Arxiv. Retaining more large-weight edges (small $s_1, s_2$) outperforms retaining more small-weight edges (large $s_1, s_2$).
-
 
 ## Key Results
 
