@@ -64,56 +64,56 @@ gcn-sparsification/
 
 ## Experiments
 
-### 4.1 Synthetic Data Experiments
-
-Generate synthetic graphs and evaluate GCN performance under different configurations.
-
-**Effect of Hidden Neurons (Figure 3):**
-```bash
-python experiments/synthetic/exp_hidden_neurons.py
-```
-
-**Layer-wise Sampling Rate (Figure 4):**
-```bash
-python experiments/synthetic/exp_sampling_rate.py --p1 0.5 --p2 0.5
-```
-
-**2D Sampling Rate Grid:**
-```bash
-python experiments/synthetic/exp_2d_sampling.py
-```
-
 ### 4.3 Large-scale Real Dataset Experiments
 
-Experiments on Open Graph Benchmark (OGB) datasets.
+Experiments on Open Graph Benchmark (OGB) datasets, specifically **Ogbn-Arxiv**, using an 8-layer Jumping Knowledge Network.
 
-**Ogbn-Arxiv (Figure 5, 6):**
-```bash
-# Vary sampling rate in shallow layers (p1), fix deep layers (p2=0.1)
-python experiments/ogb/train_ogbn_arxiv.py --p1_range 0.1 1.0 --p2 0.1
+#### 1. Layer-wise Pruning Sensitivity (Figure 5)
 
-# Vary sampling rate in deep layers (p2), fix shallow layers (p1=0.1)  
-python experiments/ogb/train_ogbn_arxiv.py --p1 0.1 --p2_range 0.1 1.0
+We investigate how pruning in shallow layers ($q_1$) versus deep layers ($q_2$) affects generalization.
 
-# 2D heatmap experiment
-python experiments/ogb/train_ogbn_arxiv.py --mode 2d
-```
+<p align="center">
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="figure/3D_GCN_res.png" alt="3D GCN Results">
+      <br><strong>(a) Test Error vs Pruning Rates</strong>
+    </td>
+    <td align="center" width="50%">
+      <img src="figure/2D_GCN_res.png" alt="2D GCN Results">
+      <br><strong>(b) 2D Heatmap</strong>
+    </td>
+  </tr>
+</table>
+</p>
 
-**Ogbn-Products (Figure 7):**
-```bash
-python experiments/ogb/train_ogbn_products.py --p1_range 0.1 1.0 --p2 0.1
-```
+> **Key Finding**: Deeper layers tolerate higher sampling rates (graph pruning) than shallow layers while maintaining accuracy. The test error decreases more drastically when increasing retention in shallow layers ($q_1$) compared to deep layers ($q_2$).
+
+---
+
+#### 2. Edge Weight Influence (Figure 6)
+
+We analyze whether large-weight edges or small-weight edges contribute more to generalization. $s_1$ and $s_2$ represent the starting percentile of retained edges (small $s$ = retaining largest weights).
+
+<p align="center">
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="figure/3D_Heatmap_of_Test_Error_Rate2.png" alt="3D Edge Weight Analysis">
+      <br><strong>(a) Error vs Edge Weight Range</strong>
+    </td>
+    <td align="center" width="50%">
+      <img src="figure/2D_Heatmap_of_Test_Error_Rate.png" alt="2D Edge Weight Analysis">
+      <br><strong>(b) 2D Heatmap</strong>
+    </td>
+  </tr>
+</table>
+</p>
+
+> **Key Finding**: Retaining more large-weight edges (small $s_1, s_2$) outperforms retaining more small-weight edges (large $s_1, s_2$). This confirms that large-weight edges are more influential on generalization.
+
 
 ## Key Results
-
-### Layer-wise Sampling Sensitivity
-
-Our experiments demonstrate that **shallow layers are more sensitive to sparsification** than deep layers:
-
-| Dataset | Varying p₁ (shallow) | Varying p₂ (deep) |
-|---------|---------------------|-------------------|
-| Ogbn-Arxiv | High sensitivity | Low sensitivity |
-| Ogbn-Products | High sensitivity | Low sensitivity |
 
 ### Practical Recommendations
 
